@@ -96,7 +96,7 @@ import { Uploader } from '@nutui/nutui-react'
 
 | 字段 | 說明 | 類型 | 默認值 |
 | --- | --- | --- | --- |
-| autoUpload | 是否在選取文件後立即進行上傳，false 時需要手動執行 ref submit 方法進行上傳 | `Boolean` | `true` |
+| autoUpload | 是否在選取文件後立即進行上傳，false 時需要手動執行 ref submit 方法進行上傳 | `boolean` | `true` |
 | upload | 上傳方法，入參是需要被上傳的文件對象，經過異步處理之後，返回上傳結果 | `(file: File) => Promise<FileItem>` | `-` |
 | name | `input` 標簽 `name` 的名稱，發到後臺的文件參數名 | `string` | `file` |
 | defaultValue | 默認已經上傳的文件列表 | `FileItem[]` | `[]` |

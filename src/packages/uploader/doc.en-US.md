@@ -92,7 +92,7 @@ import { Uploader } from '@nutui/nutui-react'
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- | autoUpload | Whether to upload the file immediately after selecting it.
-| autoUpload | If or not the upload will be done immediately after the file is selected, if false, you need to manually execute the ref submit method to upload | `Boolean` | `true` | upload | The upload method, the input parameter is the file to be uploaded.
+| autoUpload | If or not the upload will be done immediately after the file is selected, if false, you need to manually execute the ref submit method to upload | `boolean` | `true` | upload | The upload method, the input parameter is the file to be uploaded.
 | upload | Upload method, input is the file object to be uploaded, after asynchronous processing, return the upload result | `(file: File) => Promise<FileItem>` | `-` |
 | name | The name of the `input` tag `name`, the name of the file parameter sent to the backend | `string` | `file` |
 | defaultValue | Default list of files already uploaded | `FileItem[]` | `[]` |
