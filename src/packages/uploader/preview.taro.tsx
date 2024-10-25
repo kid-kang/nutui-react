@@ -117,7 +117,11 @@ export const Preview: React.FunctionComponent<any> = ({
                     onClick={() => handleItemClick(item, index)}
                   >
                     <LinkIcon />
-                    <span>&nbsp;{name}</span>
+                    <span
+                      className={`nut-uploader-preview-img-file-name ${status}`}
+                    >
+                      &nbsp;{name}
+                    </span>
                   </View>
                   {deletable && (
                     <Del

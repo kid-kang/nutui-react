@@ -14,7 +14,7 @@ const Demo1 = () => {
   ])
 
   const uploaderStyle = {
-    marginInlineEnd: '10px',
+    marginRight: '10px',
     marginBottom: '10px',
   }
   function sleep(time: number) {

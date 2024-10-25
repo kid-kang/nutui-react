@@ -195,7 +195,6 @@ const InternalUploader: ForwardRefRenderFunction<
   }
 
   const _chooseImage = () => {
-    console.log(1)
     if (disabled) {
       return
     }
@@ -216,7 +215,6 @@ const InternalUploader: ForwardRefRenderFunction<
       }
     }
     if ((getEnv() === 'WEAPP' || getEnv() === 'JD') && chooseMedia) {
-      console.log(66)
       chooseMedia({
         count: multiple ? (maxCount as number) * 1 - fileList.length : 1,
         /** 文件类型 */

@@ -1,4 +1,6 @@
 import React from 'react'
+import Taro from '@tarojs/taro'
+import { View, ScrollView } from '@tarojs/components'
 import { useTranslate } from '@/sites/assets/locale/taro'
 import Demo1 from './demos/taro/demo1'
 import Demo2 from './demos/taro/demo2'
@@ -9,6 +11,7 @@ import Demo6 from './demos/taro/demo6'
 import Demo7 from './demos/taro/demo7'
 import Demo8 from './demos/taro/demo8'
 import Demo9 from './demos/taro/demo9'
+import Header from '@/sites/components/header'
 
 const UploaderDemo = () => {
   const [translated] = useTranslate({
@@ -50,26 +53,30 @@ const UploaderDemo = () => {
 
   return (
     <>
-      <div className="demo bg-w">
-        <h2>{translated.basic}</h2>
+      <Header />
+      <ScrollView
+        className={`demo ${Taro.getEnv() === 'WEB' ? 'web' : ''} padding`}
+      >
+        {' '}
+        <View className="h2">{translated.basic}</View>
         <Demo1 />
-        <h2>{translated.uploadStatus}</h2>
+        <View className="h2">{translated.uploadStatus}</View>
         <Demo2 />
-        <h2>{translated.limitedQuantity}</h2>
+        <View className="h2">{translated.limitedQuantity}</View>
         <Demo3 />
-        <h2>{translated.limitSize}</h2>
+        <View className="h2">{translated.limitSize}</View>
         <Demo4 />
-        <h2>{translated.beforeUpload}</h2>
+        <View className="h2">{translated.beforeUpload}</View>
         <Demo5 />
-        <h2>{translated.disabled}</h2>
+        <View className="h2">{translated.disabled}</View>
         <Demo6 />
-        <h2>{translated.customDeleteIcon}</h2>
+        <View className="h2">{translated.customDeleteIcon}</View>
         <Demo7 />
-        <h2>{translated.manualExecution}</h2>
+        <View className="h2">{translated.manualExecution}</View>
         <Demo8 />
-        <h2>{translated.uploadListDefault}</h2>
+        <View className="h2">{translated.uploadListDefault}</View>
         <Demo9 />
-      </div>
+      </ScrollView>
     </>
   )
 }

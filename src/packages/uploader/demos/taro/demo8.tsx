@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import { Uploader, Button, Cell } from '@nutui/nutui-react-taro'
+import { View } from '@tarojs/components'
 
 interface uploadRefState {
   submit: () => void
@@ -37,19 +38,19 @@ const Demo8 = () => {
         upload={(file: File) => upload(file)}
         style={{ marginBottom: 10 }}
       />
-      <div>
+      <View style={{ display: 'flex' }}>
         <Button
           type="success"
           size="small"
           onClick={submitUpload}
-          style={{ marginInlineEnd: '10px' }}
+          style={{ marginRight: '10px' }}
         >
           执行上传
         </Button>
         <Button type="primary" size="small" onClick={clearUpload}>
           手动清空上传
         </Button>
-      </div>
+      </View>
     </Cell>
   )
 }

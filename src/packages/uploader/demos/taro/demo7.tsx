@@ -20,11 +20,13 @@ const Demo7 = () => {
         style={{
           marginInlineEnd: '10px',
         }}
+        maxCount={1}
       />
       <Uploader
         defaultValue={defaultFileList}
         uploadIcon={<Star />}
         deleteIcon={<Dongdong />}
+        maxCount={1}
       />
     </Cell>
   )
