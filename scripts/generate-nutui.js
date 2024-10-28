@@ -15,12 +15,16 @@ const raws = []
 
 config.nav.map((item) => {
   item.packages.forEach((element) => {
-    let { name, show, exportEmpty, exclude } = element
+    let { name, show, exportEmpty, exclude, cssExperiment } = element
     if (exclude) return
     if (show || exportEmpty) {
       importStr += `import ${name} from '@/packages/${name.toLowerCase()}';\n`
       importStr += `export * from '@/packages/${name.toLowerCase()}';\n`
-      importScssStr += `import '@/packages/${name.toLowerCase()}/${name.toLowerCase()}.scss';\n`
+      if(cssExperiment) {
+        importScssStr += `import '@/packages/${name.toLowerCase()}/style/index.scss';\n`
+      } else {
+        importScssStr += `import '@/packages/${name.toLowerCase()}/${name.toLowerCase()}.scss';\n`
+      }
 
       packages.push(name)
     }

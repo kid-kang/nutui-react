@@ -1,0 +1,16 @@
+{
+  "default": {
+    "type": "default",
+    "size": "normal",
+    "shape": "round",
+    "fill": "solid"
+  },
+  "properties": {
+    "type": 1,
+    "size": 1,
+    "shape": 1,
+    "loading": 1,
+    "disabled": 1,
+    "fill": 2
+  }
+}
