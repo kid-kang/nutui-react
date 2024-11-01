@@ -142,7 +142,9 @@ When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change wit
 
 :::
 
-### Title FontSize: 20px 12px
+:::
+
+### A Large Number Of Scrolling Operations 2
 
 :::demo
 
@@ -150,11 +152,51 @@ When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change wit
 
 :::
 
-### Custom Tab Bar
+### Left And Right Layout
 
 :::demo
 
 <CodeBlock src='h5/demo18.tsx'></CodeBlock>
+
+:::
+
+### Left And Right Layout-Smile Curve
+
+:::demo
+
+<CodeBlock src='h5/demo19.tsx'></CodeBlock>
+
+:::
+
+### Tabs In Tabs
+
+:::demo
+
+<CodeBlock src='h5/demo20.tsx'></CodeBlock>
+
+:::
+
+### Tabs In Tabs 2
+
+:::demo
+
+<CodeBlock src='h5/demo21.tsx'></CodeBlock>
+
+:::
+
+### Title FontSize: 20px 12px
+
+:::demo
+
+<CodeBlock src='h5/demo22.tsx'></CodeBlock>
+
+:::
+
+### Custom Tab Bar
+
+:::demo
+
+<CodeBlock src='h5/demo23.tsx'></CodeBlock>
 
 :::
 
@@ -167,6 +209,7 @@ When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change wit
 | value | The value of the currently active tab panel | `number` \| `string` | `0` |
 | defaultValue | Initialize the value of the active tab | `number` \| `string` | `0` |
 | activeColor | Label selected color | `string` | `#1A1A1A` |
+| direction | Use horizontal and vertical directions | `horizontal` \| `vertical` | `horizontal` |
 | activeType | Select the bottom display style Optional values `line`、`smile`、`simple`、`card`、`button`、`divider` | `line` \| `smile` \| `simple` \| `card` \| `button`\| `divider` | `line` |
 | duration | Switch animation duration, unit ms 0 means no animation | `number` \| `string` | `300` |
 | title | custom navigation area | `() => JSX.Element[]` | `-` |

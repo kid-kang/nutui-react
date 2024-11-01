@@ -13,29 +13,34 @@
   overflow: hidden;
   background: $tabs-titles-background-color;
   scrollbar-width: none;
+
   &::-webkit-scrollbar {
     display: none;
     width: 0;
     background: transparent;
   }
+
   .nut-tabs-list {
     width: 100%;
     height: auto;
     display: flex;
     flex-shrink: 0;
   }
+
   &-left {
     justify-content: flex-start;
     .nut-tabs-titles-item {
       padding: 0 22px;
     }
   }
+
   &-right {
     justify-content: flex-end;
     .nut-tabs-titles-item {
       padding: 0 22px;
     }
   }
+
   &-scrollable {
     overflow-x: auto;
     overflow-y: hidden;
@@ -60,9 +65,11 @@
     &-right {
       flex: none;
     }
+
     &-text {
       text-align: center;
     }
+
     &-smile,
     &-line {
       position: absolute;
@@ -80,6 +87,7 @@
 
     &-smile {
       bottom: $tabs-titles-item-smile-bottom;
+
       .nut-icon {
         position: absolute;
         font-size: 20px;
@@ -92,6 +100,7 @@
     &-active {
       color: $tabs-titles-item-active-color;
       font-weight: $tabs-titles-item-active-font-weight;
+
       .nut-tabs-titles-item-line {
         overflow: unset;
         content: ' ';
@@ -99,12 +108,14 @@
         height: $tabs-tab-line-height;
         background: $tabs-tab-line-color;
       }
+
       .nut-tabs-titles-item-smile {
         overflow: unset;
         width: 40px;
         height: 20px;
       }
     }
+
     &-disabled {
       color: $color-text-disabled;
     }
@@ -120,8 +131,10 @@
   &-card {
     padding: 0;
     background-color: $color-default-light;
+
     .nut-tabs-titles-item {
       padding: 0;
+
       &-active {
         font-weight: $font-weight-bold;
         background-color: $white;
@@ -158,9 +171,11 @@
   &-divider {
     padding: 0;
     border-bottom: 1px solid $color-border;
+
     .nut-tabs-titles-item {
       padding: 0;
       position: relative;
+
       &::after {
         content: '';
         position: absolute;
@@ -171,6 +186,7 @@
         background: $color-border;
         transform: translateY(-50%);
       }
+
       &:last-child {
         &::after {
           display: none;
@@ -205,9 +221,212 @@
   position: relative;
 }
 
+.nut-tabs-vertical {
+  flex-direction: row;
+  width: 100%;
+
+  .nut-tabs-ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .nut-tabs-titles {
+    box-sizing: border-box;
+    flex-direction: column;
+    height: 100%;
+    padding: 0;
+    width: $tabs-vertical-titles-width;
+    flex-shrink: 0;
+
+    .nut-tabs-list {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+    }
+
+    &-line {
+      .nut-tabs-titles-item {
+        padding-left: 14px;
+      }
+    }
+  }
+
+  .nut-tabs-titles-scrollable {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .nut-tabs-titles-item {
+    height: $tabs-vertical-titles-item-height;
+    margin: 0;
+    flex: none;
+
+    &-smile {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      transition: width 0.3s ease;
+    }
+
+    &-line {
+      width: 0;
+      height: 0;
+      transform: translate(0, -50%);
+      transition: height 0.3s ease;
+
+      &-vertical {
+        top: 50%;
+      }
+    }
+
+    &-active {
+      background-color: $tabs-titles-item-active-background-color;
+      .nut-tabs-titles-item-line {
+        left: 10px;
+        width: $tabs-vertical-tab-line-width;
+        height: $tabs-vertical-tab-line-height;
+        background: $tabs-vertical-tab-line-color;
+      }
+
+      .nut-tabs-titles-item-smile {
+        right: -12px;
+        bottom: -2%;
+        left: auto;
+        width: 40px;
+        height: 20px;
+        transform: rotate(320deg);
+      }
+    }
+  }
+
+  .nut-tabs-horizontal {
+    .nut-tabs-titles {
+      flex-direction: row;
+      overflow-x: auto;
+      overflow-y: hidden;
+      height: $tabs-titles-height;
+
+      .nut-tabs-list {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-shrink: 0;
+      }
+    }
+
+    .nut-tabs-content {
+      flex-direction: row;
+    }
+
+    .nut-tabs-titles-item-active {
+      background-color: initial;
+
+      .nut-tabs-titles-item-line {
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+
+      .nut-tabs-titles-item-smile {
+        left: 50%;
+        right: auto;
+        bottom: -3px;
+        transform: translate(-50%, 0) rotate(0deg);
+      }
+    }
+  }
+
+  .nut-tabs-content {
+    flex-direction: column;
+    height: 100%;
+
+    &-wrap {
+      flex: 1;
+    }
+
+    .nut-tabpane {
+      height: 100%;
+    }
+  }
+
+  .nut-tabs-horizontal {
+    .nut-tabs-titles {
+      display: flex;
+      flex-direction: row;
+      padding: 0 !important;
+      width: 100%;
+
+      .nut-tabs-titles-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1 0 auto;
+
+        &-active {
+          color: $color-primary;
+          font-weight: $tabs-titles-item-active-font-weight;
+          font-size: $tabs-titles-item-active-font-size;
+
+          .nut-tabs-titles-item-line {
+            content: ' ';
+            width: $tabs-tab-line-width;
+            height: $tabs-tab-line-height;
+            background: $tabs-tab-line-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+[dir='rtl'] .nut-tabs-vertical,
+.nut-rtl .nut-tabs-vertical {
+  .nut-tabs-titles {
+    &-line {
+      .nut-tabs-titles-item {
+        padding-left: 0;
+        padding-right: 14px;
+      }
+    }
+  }
+
+  .nut-tabs-titles-item {
+    &-active {
+      .nut-tabs-titles-item-line {
+        left: auto;
+        right: 10px;
+      }
+
+      .nut-tabs-titles-item-smile {
+        left: -12px;
+        right: auto;
+        transform: rotate(-320deg);
+      }
+    }
+  }
+
+  .nut-tabs-horizontal {
+    .nut-tabs-titles-item-active {
+      .nut-tabs-titles-item-line {
+        left: auto;
+        right: 50%;
+        transform: translate(50%, 0);
+      }
+
+      .nut-tabs-titles-item-smile {
+        right: 50%;
+        left: auto;
+        transform: translate(50%, 0) rotate(0deg);
+      }
+    }
+  }
+}
+
 .nut-tabs-content {
   display: flex;
   box-sizing: border-box;
+
   &-wrap {
     overflow: hidden;
   }

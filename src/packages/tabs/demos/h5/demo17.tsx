@@ -1,26 +1,34 @@
 import React, { useState } from 'react'
 import { Tabs } from '@nutui/nutui-react'
 
-const Demo17 = () => {
-  const [tab4value, setTab4value] = useState<number | string>('0')
-  const list4 = Array.from(new Array(10).keys())
+const Demo22 = () => {
+  const [tab11value, setTab11value] = useState<string | number>('0')
+  const [tab12value, setTab12value] = useState<string | number>('0')
   return (
     <>
       <Tabs
-        value={tab4value}
-        style={{ height: '300px' }}
+        value={tab11value}
         onChange={(value) => {
-          setTab4value(value)
+          setTab11value(value)
         }}
-        direction="vertical"
+        style={{ '--nutui-tabs-titles-font-size': '20px' }}
       >
-        {list4.map((item) => (
-          <Tabs.TabPane key={item} title={`Tab ${item}`}>
-            Tab {item}
-          </Tabs.TabPane>
-        ))}
+        <Tabs.TabPane title="Tab 1"> Tab 1 </Tabs.TabPane>
+        <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
+        <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
+      </Tabs>
+      <Tabs
+        value={tab12value}
+        onChange={(value) => {
+          setTab12value(value)
+        }}
+        style={{ '--nutui-tabs-titles-font-size': '12px' }}
+      >
+        <Tabs.TabPane title="Tab 1"> Tab 1 </Tabs.TabPane>
+        <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
+        <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
       </Tabs>
     </>
   )
 }
-export default Demo17
+export default Demo22

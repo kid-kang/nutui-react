@@ -142,7 +142,9 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Title 字体尺寸：20px 12px
+:::
+
+### 数量多,滚动操作2
 
 :::demo
 
@@ -150,11 +152,51 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 自定义标签栏
+### 左右布局
 
 :::demo
 
 <CodeBlock src='h5/demo18.tsx'></CodeBlock>
+
+:::
+
+### 左右布局-微笑曲线
+
+:::demo
+
+<CodeBlock src='h5/demo19.tsx'></CodeBlock>
+
+:::
+
+### 嵌套布局
+
+:::demo
+
+<CodeBlock src='h5/demo20.tsx'></CodeBlock>
+
+:::
+
+### 嵌套布局2
+
+:::demo
+
+<CodeBlock src='h5/demo21.tsx'></CodeBlock>
+
+:::
+
+### Title 字体尺寸：20px 12px
+
+:::demo
+
+<CodeBlock src='h5/demo22.tsx'></CodeBlock>
+
+:::
+
+### 自定义标签栏
+
+:::demo
+
+<CodeBlock src='h5/demo23.tsx'></CodeBlock>
 
 :::
 
@@ -167,6 +209,7 @@ import { Tabs } from '@nutui/nutui-react'
 | value | 当前激活 tab 面板的值 | `number` \| `string` | `0` |
 | defaultValue | 初始化激活 tab 的值 | `number` \| `string` | `0` |
 | activeColor | 标签选中色 | `string` | `#1A1A1A` |
+| direction | 使用横纵方向 | `horizontal` \| `vertical` | `horizontal` |
 | activeType | 选中底部展示样式 可选值 `line`、`smile`、`simple`、`card`、`button`、`divider` | `line` \| `smile` \| `simple` \| `card` \| `button`\| `divider` | `line` |
 | duration | 切换动画时长,单位 ms 0 代表无动画 | `number` \| `string` | `300` |
 | title | 自定义导航区域 | `() => JSX.Element[]` | `-` |

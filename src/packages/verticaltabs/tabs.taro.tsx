@@ -3,26 +3,49 @@ import { ScrollView, View } from '@tarojs/components'
 import classNames from 'classnames'
 import { JoySmile } from '@nutui/icons-react-taro'
 import Taro, { nextTick, createSelectorQuery } from '@tarojs/taro'
-import { ComponentDefaults } from '@/utils/typings'
+import { BasicComponent, ComponentDefaults } from '@/utils/typings'
 import TabPane from '@/packages/tabpane/index.taro'
 import { usePropsValue } from '@/utils/use-props-value'
 import { useForceUpdate } from '@/utils/use-force-update'
 import raf from '@/utils/raf'
 import useUuid from '@/utils/use-uuid'
 import { useRtl } from '../configprovider/configprovider.taro'
-import { mergeProps } from '@/utils/merge-props'
-import { TabsTitle, TabsProps, RectItem } from './type'
+
+export type TabsTitle = {
+  title: string
+  disabled: boolean
+  active?: boolean
+  value: string | number
+}
+
+export interface TabsProps extends BasicComponent {
+  tabStyle: React.CSSProperties
+  value: string | number
+  defaultValue: string | number
+  activeColor: string
+  name: string
+  direction: 'horizontal' | 'vertical'
+  activeType: 'line' | 'smile' | 'simple' | 'card' | 'button' | 'divider'
+  duration: number | string
+  align: 'left' | 'right'
+  title: () => JSX.Element[]
+  onChange: (index: string | number) => void
+  onClick: (index: string | number) => void
+  autoHeight: boolean
+  children?: React.ReactNode
+}
 
 const defaultProps = {
   ...ComponentDefaults,
   tabStyle: {},
   activeColor: '',
+  direction: 'horizontal',
   activeType: 'line',
   duration: 300,
   autoHeight: false,
 } as TabsProps
-const classPrefix = 'nut-tabs'
 
+const classPrefix = 'nut-tabs'
 export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   TabPane: typeof TabPane
 } = (props) => {
@@ -30,6 +53,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   const {
     activeColor,
     tabStyle,
+    direction,
     activeType,
     duration,
     align,
@@ -43,16 +67,22 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     value: outerValue,
     defaultValue: outerDefaultValue,
     ...rest
-  } = mergeProps(defaultProps, props)
+  } = {
+    ...defaultProps,
+    ...props,
+  }
   const uuid = useUuid()
+
   const [value, setValue] = usePropsValue<string | number>({
     value: outerValue,
     defaultValue: outerDefaultValue,
     finalValue: 0,
     onChange,
   })
+
   const titleItemsRef = useRef<HTMLDivElement[]>([])
   const navRef = useRef<HTMLDivElement>(null)
+
   const getTitles = () => {
     const titles: TabsTitle[] = []
     React.Children.forEach(children, (child: any, idx) => {
@@ -69,6 +99,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     })
     return titles
   }
+
   const titles = useRef<TabsTitle[]>(getTitles())
   const forceUpdate = useForceUpdate()
   useEffect(() => {
@@ -87,7 +118,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   }, [children])
   const classes = classNames(
     classPrefix,
-    `${classPrefix}-horizontal`,
+    `${classPrefix}-${direction}`,
     className
   )
   const classesTitle = classNames(`${classPrefix}-titles`, {
@@ -95,6 +126,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     [`${classPrefix}-titles-scrollable`]: true,
     [`${classPrefix}-titles-${align}`]: align,
   })
+
   const tabsActiveStyle = {
     color: activeType === 'smile' ? activeColor : '',
     background: activeType === 'line' ? activeColor : '',
@@ -119,20 +151,39 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
         })
     })
   }
-
+  type RectItem = {
+    bottom: number
+    dataset: { sid: string }
+    height: number
+    id: string
+    left: number
+    right: number
+    top: number
+    width: number
+  }
   const scrollWithAnimation = useRef(false)
   const navRectRef = useRef<any>()
   const titleRectRef = useRef<RectItem[]>([])
   const [scrollLeft, setScrollLeft] = useState(0)
-  const scrollDirection = (to: number) => {
+  const [scrollTop, setScrollTop] = useState(0)
+  const scrollDirection = (
+    to: number,
+    direction: 'horizontal' | 'vertical'
+  ) => {
     let count = 0
     const frames = 1
+
     function animate() {
-      setScrollLeft(to)
+      if (direction === 'horizontal') {
+        setScrollLeft(to)
+      } else {
+        setScrollTop(to)
+      }
       if (++count < frames) {
         raf(animate)
       }
     }
+
     animate()
   }
   const scrollIntoView = (index: number) => {
@@ -143,30 +194,44 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
       ]).then(([navRect, titleRects]: any) => {
         navRectRef.current = navRect
         titleRectRef.current = titleRects
+        // @ts-ignore
         const titleRect: RectItem = titleRectRef.current[index]
         if (!titleRect) return
+
         let to = 0
-        const left = titleRects
-          .slice(0, index)
-          .reduce((prev: number, curr: RectItem) => prev + curr.width, 0)
-        to = left - (navRectRef.current.width - titleRect.width) / 2
-        // to < 0 说明不需要进行滚动，页面元素已全部显示出来
-        if (to < 0) return
-        to = rtl ? -to : to
+        if (direction === 'vertical') {
+          const top = titleRects
+            .slice(0, index)
+            .reduce((prev: number, curr: RectItem) => prev + curr.height, 0)
+          to = top - (navRectRef.current.height - titleRect.height) / 2
+        } else {
+          const left = titleRects
+            .slice(0, index)
+            .reduce((prev: number, curr: RectItem) => prev + curr.width, 0)
+          to = left - (navRectRef.current.width - titleRect.width) / 2
+          // to < 0 说明不需要进行滚动，页面元素已全部显示出来
+          if (to < 0) return
+          to = rtl ? -to : to
+        }
         nextTick(() => {
           scrollWithAnimation.current = true
         })
-        scrollDirection(to)
+
+        scrollDirection(to, direction)
       })
     })
   }
+
   const getContentStyle = () => {
     let index = titles.current.findIndex(
       (t) => String(t.value) === String(value)
     )
     index = index < 0 ? 0 : index
     return {
-      transform: `translate3d(${rtl ? '' : '-'}${index * 100}%, 0, 0)`,
+      transform:
+        direction === 'horizontal'
+          ? `translate3d(${rtl ? '' : '-'}${index * 100}%, 0, 0)`
+          : `translate3d( 0,-${index * 100}%, 0)`,
       transitionDuration: `${duration}ms`,
     }
   }
@@ -181,7 +246,9 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
 
   const tabChange = (item: TabsTitle, index: number) => {
     onClick && onClick(item.value)
-    if (item.disabled) return
+    if (item.disabled) {
+      return
+    }
     setValue(item.value)
   }
 
@@ -189,9 +256,10 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     <View className={classes} {...rest}>
       <ScrollView
         enableFlex
-        scrollX
-        scrollY={false}
+        scrollX={direction === 'horizontal'}
+        scrollY={direction === 'vertical'}
         scrollLeft={scrollLeft}
+        scrollTop={scrollTop}
         showScrollbar={false}
         scrollWithAnimation={
           rtl && Taro.getEnv() !== 'WEB' ? false : scrollWithAnimation.current
@@ -226,7 +294,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
                         className={classNames(
                           `${classPrefix}-titles-item-line`,
                           {
-                            [`${classPrefix}-titles-item-line-horizontal`]:
+                            [`${classPrefix}-titles-item-line-${direction}`]:
                               true,
                           }
                         )}
@@ -260,10 +328,12 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
             if (!React.isValidElement(child)) {
               return null
             }
+
             let childProps = {
               ...child.props,
               active: value === child.props.value,
             }
+
             if (
               String(value) !== String(child.props.value || idx) &&
               autoHeight
