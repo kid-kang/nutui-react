@@ -33,7 +33,7 @@ export const Preview: React.FunctionComponent<any> = ({
         fileList.map((item: FileItem, index: number) => {
           const {
             status = 'success',
-            uid,
+            uid = index,
             url,
             message = '',
             name = '',

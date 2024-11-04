@@ -10,6 +10,7 @@ const Demo1 = () => {
   const [list, setList] = useState<FileItem[]>([
     {
       url: demoUrl,
+      uid: 133,
     },
   ])
 
