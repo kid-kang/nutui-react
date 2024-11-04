@@ -1,7 +1,6 @@
 import React from 'react'
-import { Uploader } from '@nutui/nutui-react-taro'
+import { Uploader, FileItem } from '@nutui/nutui-react-taro'
 import { Dongdong, Loading, Star } from '@nutui/icons-react-taro'
-import { FileItem } from '../../file-item'
 
 const Demo2 = () => {
   const defaultList: FileItem[] = [

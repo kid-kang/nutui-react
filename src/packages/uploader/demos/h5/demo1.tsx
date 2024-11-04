@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
-import { Uploader, Cell } from '@nutui/nutui-react'
+import { Uploader, Cell, FileItem } from '@nutui/nutui-react'
 import { Dongdong } from '@nutui/icons-react'
-import { FileItem } from '../../file-item'
 
 const Demo1 = () => {
   const [list, setList] = useState<FileItem[]>([

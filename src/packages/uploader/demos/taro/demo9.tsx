@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Loading, Star } from '@nutui/icons-react'
-import { Uploader, Button } from '@nutui/nutui-react-taro'
-import { FileItem } from '../../file-item'
+import { Uploader, Button, FileItem } from '@nutui/nutui-react-taro'
 
 const Demo9 = () => {
   const [list, setList] = useState<FileItem[]>([

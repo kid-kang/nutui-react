@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { Uploader, Cell } from '@nutui/nutui-react-taro'
-import { FileItem } from '../../file-item'
+import { Uploader, Cell, FileItem } from '@nutui/nutui-react-taro'
 
 const Demo3 = () => {
   const demoUrl =

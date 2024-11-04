@@ -1,7 +1,7 @@
 import React from 'react'
 import { Del, Failure, Link as LinkIcon, Loading } from '@nutui/icons-react'
 import Image from '@/packages/image'
-import { FileItem } from '@/packages/uploader/file-item'
+import { FileItem } from '../uploader'
 
 export const Preview: React.FunctionComponent<any> = ({
   fileList,
