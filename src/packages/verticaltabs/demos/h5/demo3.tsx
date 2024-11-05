@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tabs } from '@nutui/nutui-react'
+import { VerticalTabs as Tabs } from '@nutui/nutui-react'
 
 const Demo3 = () => {
   const [tab1value, setTab1value] = useState<string | number>('0')

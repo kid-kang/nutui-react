@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Tabs } from '@nutui/nutui-react'
+import { VerticalTabs as Tabs } from '@nutui/nutui-react'
 
 const Demo2 = () => {
   const [tab1value, setTab1value] = useState<string | number>('0')
@@ -10,7 +10,7 @@ const Demo2 = () => {
         onChange={(value) => {
           setTab1value(value)
         }}
-        activeType="smile"
+        activeType="simple"
       >
         <Tabs.TabPane title="Tab 1"> Tab 1 </Tabs.TabPane>
         <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>

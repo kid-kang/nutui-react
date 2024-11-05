@@ -1,22 +1,33 @@
 import React, { useState } from 'react'
-import { Tabs } from '@nutui/nutui-react'
+import { VerticalTabs as Tabs } from '@nutui/nutui-react'
 
-const Demo7 = () => {
-  const [tab1value, setTab1value] = useState<string | number>('0')
+const Demo8 = () => {
+  const [tab8value, setTab8value] = useState<number | string>('0')
+  const [tab9value, setTab9value] = useState<number | string>('0')
   return (
     <>
       <Tabs
-        value={tab1value}
-        align="left"
+        value={tab8value}
         onChange={(value) => {
-          setTab1value(value)
+          setTab8value(value)
         }}
       >
-        <Tabs.TabPane title="Tab 1"> Tab 1</Tabs.TabPane>
+        <Tabs.TabPane title="Tab 1">
+          <Tabs
+            value={tab9value}
+            onChange={(value) => {
+              setTab9value(value)
+            }}
+          >
+            <Tabs.TabPane title="Tab 1"> Tab 1 </Tabs.TabPane>
+            <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
+            <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
+          </Tabs>
+        </Tabs.TabPane>
         <Tabs.TabPane title="Tab 2"> Tab 2 </Tabs.TabPane>
         <Tabs.TabPane title="Tab 3"> Tab 3 </Tabs.TabPane>
       </Tabs>
     </>
   )
 }
-export default Demo7
+export default Demo8

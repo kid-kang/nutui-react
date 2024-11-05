@@ -1,4 +1,4 @@
-import { Tabs } from './tabs'
+import { VerticalTabs } from './verticaltabs'
 
-export type { TabsProps, TabsTitle } from './tabs'
-export default Tabs
+export type { TabsProps, TabsTitle } from '../tabs'
+export default VerticalTabs

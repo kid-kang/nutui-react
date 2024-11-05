@@ -15,7 +15,7 @@ test('base Tabs', () => {
 
 test('base tabs props', () => {
   const { container } = render(
-    <Tabs value="0" direction="horizontal" activeType="smile">
+    <Tabs value="0" activeType="smile">
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>
@@ -31,7 +31,7 @@ test('base tabs props', () => {
 
 test('base tabs props', () => {
   const { container } = render(
-    <Tabs value="0" direction="horizontal" activeType="card">
+    <Tabs value="0" activeType="card">
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>
@@ -144,7 +144,7 @@ test('base click', () => {
 test('click tab when have many tabs', async () => {
   const handleClick = vi.fn(() => {})
   const { container } = render(
-    <Tabs value="0" onClick={handleClick} direction="vertical">
+    <Tabs value="0" onClick={handleClick}>
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>

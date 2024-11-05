@@ -1,55 +1,31 @@
 import React, { FunctionComponent, useEffect, useRef } from 'react'
 import classNames from 'classnames'
 import { JoySmile } from '@nutui/icons-react'
-import { BasicComponent, ComponentDefaults } from '@/utils/typings'
+import { ComponentDefaults } from '@/utils/typings'
 import TabPane from '@/packages/tabpane'
 import raf from '@/utils/raf'
 import { usePropsValue } from '@/utils/use-props-value'
 import { useForceUpdate } from '@/utils/use-force-update'
 import { useRtl } from '../configprovider'
-
-export type TabsTitle = {
-  title: string
-  disabled: boolean
-  active?: boolean
-  value: string | number
-}
-
-export interface TabsProps extends BasicComponent {
-  tabStyle: React.CSSProperties
-  value: string | number
-  defaultValue: string | number
-  activeColor: string
-  direction: 'horizontal' | 'vertical'
-  activeType: 'line' | 'smile' | 'simple' | 'card' | 'button' | 'divider'
-  duration: number | string
-  align: 'left' | 'right'
-  title: () => JSX.Element[]
-  onChange: (index: string | number) => void
-  onClick: (index: string | number) => void
-  autoHeight: boolean
-  children?: React.ReactNode
-}
+import { TabsTitle, TabsProps } from '../tabs'
 
 const defaultProps = {
   ...ComponentDefaults,
   tabStyle: {},
   activeColor: '',
-  direction: 'horizontal',
   activeType: 'line',
   duration: 300,
   autoHeight: false,
 } as TabsProps
 
 const classPrefix = 'nut-tabs'
-export const Tabs: FunctionComponent<Partial<TabsProps>> & {
+export const VerticalTabs: FunctionComponent<Partial<TabsProps>> & {
   TabPane: typeof TabPane
 } = (props) => {
   const rtl = useRtl()
   const {
     activeColor,
     tabStyle,
-    direction,
     activeType,
     duration,
     align,
@@ -75,23 +51,13 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   })
   const titleItemsRef = useRef<HTMLDivElement[]>([])
   const navRef = useRef<HTMLDivElement>(null)
-  const scrollDirection = (
-    nav: any,
-    to: number,
-    duration: number,
-    direction?: 'horizontal' | 'vertical'
-  ) => {
+  const scrollDirection = (nav: any, to: number, duration: number) => {
     let count = 0
-    const from = direction === 'horizontal' ? nav.scrollLeft : nav.scrollTop
+    const from = nav.scrollTop
     const frames = duration === 0 ? 1 : Math.round((duration * 1000) / 16)
 
     function animate() {
-      if (direction === 'horizontal') {
-        nav.scrollLeft += (to - from) / frames
-      } else {
-        nav.scrollTop += (to - from) / frames
-      }
-
+      nav.scrollTop += (to - from) / frames
       if (++count < frames) {
         raf(animate)
       }
@@ -107,15 +73,9 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
       return
     }
     const title = titleItem[itemLength - titlesLength + index]
-
-    let to = 0
-    if (direction === 'vertical') {
-      const runTop = title.offsetTop - nav.offsetTop + 10
-      to = runTop - (nav.offsetHeight - title.offsetHeight) / 2
-    } else {
-      to = title.offsetLeft - (nav.offsetWidth - title.offsetWidth) / 2
-    }
-    scrollDirection(nav, to, immediate ? 0 : 0.3, direction)
+    const runTop = title.offsetTop - nav.offsetTop + 10
+    const to = runTop - (nav.offsetHeight - title.offsetHeight) / 2
+    scrollDirection(nav, to, immediate ? 0 : 0.3)
   }
 
   const getTitles = () => {
@@ -141,7 +101,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     let current: string | number = ''
     titles.current.forEach((title) => {
       // eslint-disable-next-line eqeqeq
-      if (title.value === value) {
+      if (title.value == value) {
         current = value
       }
     })
@@ -152,11 +112,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     }
   }, [children])
 
-  const classes = classNames(
-    classPrefix,
-    `${classPrefix}-${direction}`,
-    className
-  )
+  const classes = classNames(classPrefix, `${classPrefix}-vertical`, className)
   const classesTitle = classNames(`${classPrefix}-titles`, {
     [`${classPrefix}-titles-${activeType}`]: activeType,
     [`${classPrefix}-titles-scrollable`]: true,
@@ -172,16 +128,12 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     let index = titles.current.findIndex((t) => t.value == value)
     index = index < 0 ? 0 : index
     return {
-      transform:
-        direction === 'horizontal'
-          ? `translate3d(${rtl ? '' : '-'}${index * 100}%, 0, 0)`
-          : `translate3d( 0,-${index * 100}%, 0)`,
+      transform: `translate3d( 0,-${index * 100}%, 0)`,
       transitionDuration: `${duration}ms`,
     }
   }
   useEffect(() => {
-    // eslint-disable-next-line eqeqeq
-    let index = titles.current.findIndex((t) => t.value == value)
+    let index = titles.current.findIndex((t) => t.value === value)
     index = index < 0 ? 0 : index
     setTimeout(() => {
       scrollIntoView(index)
@@ -218,7 +170,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
                   {activeType === 'line' && (
                     <div
                       className={classNames(`${classPrefix}-titles-item-line`, {
-                        [`${classPrefix}-titles-item-line-${direction}`]: true,
+                        [`${classPrefix}-titles-item-line-vertical`]: true,
                       })}
                       style={tabsActiveStyle}
                     />
@@ -272,5 +224,5 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   )
 }
 
-Tabs.displayName = 'NutTabs'
-Tabs.TabPane = TabPane
+VerticalTabs.displayName = 'NutVerticalTabs'
+VerticalTabs.TabPane = TabPane

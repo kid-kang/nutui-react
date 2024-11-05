@@ -1,11 +1,11 @@
-# Tabs 選項卡切換
+# VerticalTabs 垂直選項卡
 
 常用於平級區域大塊內容的的收納和展現，支持內嵌標簽形式和渲染循環數據形式
 
 ## 引入
 
 ```tsx
-import { Tabs } from '@nutui/nutui-react'
+import { VerticalTabs } from '@nutui/nutui-react'
 ```
 
 ## 示例代碼
@@ -18,7 +18,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 基礎用法-微笑曲線
+### 基礎用法-簡約模式
 
 :::demo
 
@@ -26,7 +26,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 基礎用法-簡約模式
+### 基礎用法-卡片模式
 
 :::demo
 
@@ -34,7 +34,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 基礎用法-卡片模式
+### 基礎用法-按鈕模式
 
 :::demo
 
@@ -42,7 +42,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 基礎用法-按鈕模式
+### 基礎用法-微笑曲線
 
 :::demo
 
@@ -50,7 +50,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 基礎用法-分割線模式
+### 數量多，滾動操作
 
 :::demo
 
@@ -58,7 +58,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Title左對齊
+### 嵌套布局
 
 :::demo
 
@@ -66,7 +66,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 左對齊-卡片模式
+### 嵌套布局2
 
 :::demo
 
@@ -74,131 +74,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### 左對齊-按鈕模式
-
-:::demo
-
-<CodeBlock src='h5/demo9.tsx'></CodeBlock>
-
-:::
-
-### 左對齊-分割線模式
-
-:::demo
-
-<CodeBlock src='h5/demo10.tsx'></CodeBlock>
-
-:::
-
-### 通過 value 匹配
-
-:::demo
-
-<CodeBlock src='h5/demo11.tsx'></CodeBlock>
-
-:::
-
-### 滑動切換
-
-:::demo
-
-<CodeBlock src='h5/demo12.tsx'></CodeBlock>
-
-:::
-
-### CSS 粘性布局
-
-通過設置tab的style 例如：`tabStyle={{ position: 'sticky', top: '0px', zIndex: 11 }}` ，來實現Css的粘性布局，註意：在微信小程序裏組件外層元素不能存在 overflow 為 `hidden`、`auto`、`scroll`的設置。
-
-:::demo
-
-<CodeBlock src='h5/demo13.tsx'></CodeBlock>
-
-:::
-
-### Tabpane 自動高度
-
-自動高度。設置為 true 時，nut-tabs 和 nut-tabs\_\_content 會隨著當前 nut-tabpane 的高度而發生變化。
-
-:::demo
-
-<CodeBlock src='h5/demo14.tsx'></CodeBlock>
-
-:::
-
-### 數據異步渲染 3s
-
-:::demo
-
-<CodeBlock src='h5/demo15.tsx'></CodeBlock>
-
-:::
-
-### 數量多,滾動操作
-
-:::demo
-
-<CodeBlock src='h5/demo16.tsx'></CodeBlock>
-
-:::
-
-### 數量多,滾動操作2
-
-:::demo
-
-<CodeBlock src='h5/demo17.tsx'></CodeBlock>
-
-:::
-
-### 左右布局
-
-:::demo
-
-<CodeBlock src='h5/demo18.tsx'></CodeBlock>
-
-:::
-
-### 左右布局-微笑曲線
-
-:::demo
-
-<CodeBlock src='h5/demo19.tsx'></CodeBlock>
-
-:::
-
-### 嵌套布局
-
-:::demo
-
-<CodeBlock src='h5/demo20.tsx'></CodeBlock>
-
-:::
-
-### 嵌套布局2
-
-:::demo
-
-<CodeBlock src='h5/demo21.tsx'></CodeBlock>
-
-:::
-
-### Title 字體尺寸：20px 12px
-
-:::demo
-
-<CodeBlock src='h5/demo22.tsx'></CodeBlock>
-
-:::
-
-### 自定義標簽欄
-
-:::demo
-
-<CodeBlock src='h5/demo23.tsx'></CodeBlock>
-
-:::
-
-## Tabs
+## VerticalTabs
 
 ### Props
 
@@ -207,7 +83,6 @@ import { Tabs } from '@nutui/nutui-react'
 | value | 當前激活 tab 面板的值 | `number` \| `string` | `0` |
 | defaultValue | 初始化激活 tab 的值 | `number` \| `string` | `0` |
 | activeColor | 標簽選中色 | `string` | `#1A1A1A` |
-| direction | 使用橫縱方向 | `horizontal` \| `vertical` | `horizontal` |
 | activeType | 選中底部展示樣式 可選值 `line`、`smile`、`simple`、`card`、`button`、`divider` | `line` \| `smile` \| `simple` \| `card` \| `button`\| `divider` | `line` |
 | duration | 切換動畫時長,單位 ms 0 代表無動畫 | `number` \| `string` | `300` |
 | title | 自定義導航區域 | `() => JSX.Element[]` | `-` |
@@ -217,7 +92,7 @@ import { Tabs } from '@nutui/nutui-react'
 | onClick | 點擊標簽時觸發 | `(index: string \| number) => void` | `-` |
 | onChange | 當前激活的標簽改變時觸發 | `(index: string \| number) => void` | `-` |
 
-## Tabs.Tabpane
+## VerticalTabs.Tabpane
 
 ### Props
 

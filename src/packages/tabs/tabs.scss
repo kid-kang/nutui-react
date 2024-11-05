@@ -145,11 +145,9 @@
     .nut-tabs-titles-item-active {
       .nut-tabs-titles-item-text {
         background: $color-default-light;
-        color: $color-text;
         border-radius: $tabs-tab-button-border-radius;
         font-weight: $font-weight-bold;
         background-color: $tabs-tab-button-active-background-color;
-        color: $color-primary;
         border: $tabs-tab-button-active-border;
       }
     }

@@ -3,57 +3,32 @@ import { ScrollView, View } from '@tarojs/components'
 import classNames from 'classnames'
 import { JoySmile } from '@nutui/icons-react-taro'
 import Taro, { nextTick, createSelectorQuery } from '@tarojs/taro'
-import { BasicComponent, ComponentDefaults } from '@/utils/typings'
+import { ComponentDefaults } from '@/utils/typings'
 import TabPane from '@/packages/tabpane/index.taro'
 import { usePropsValue } from '@/utils/use-props-value'
 import { useForceUpdate } from '@/utils/use-force-update'
 import raf from '@/utils/raf'
 import useUuid from '@/utils/use-uuid'
 import { useRtl } from '../configprovider/configprovider.taro'
-
-export type TabsTitle = {
-  title: string
-  disabled: boolean
-  active?: boolean
-  value: string | number
-}
-
-export interface TabsProps extends BasicComponent {
-  tabStyle: React.CSSProperties
-  value: string | number
-  defaultValue: string | number
-  activeColor: string
-  name: string
-  direction: 'horizontal' | 'vertical'
-  activeType: 'line' | 'smile' | 'simple' | 'card' | 'button' | 'divider'
-  duration: number | string
-  align: 'left' | 'right'
-  title: () => JSX.Element[]
-  onChange: (index: string | number) => void
-  onClick: (index: string | number) => void
-  autoHeight: boolean
-  children?: React.ReactNode
-}
+import { TabsTitle, TabsProps } from '../tabs'
 
 const defaultProps = {
   ...ComponentDefaults,
   tabStyle: {},
   activeColor: '',
-  direction: 'horizontal',
   activeType: 'line',
   duration: 300,
   autoHeight: false,
 } as TabsProps
 
 const classPrefix = 'nut-tabs'
-export const Tabs: FunctionComponent<Partial<TabsProps>> & {
+export const VerticalTabs: FunctionComponent<Partial<TabsProps>> & {
   TabPane: typeof TabPane
 } = (props) => {
   const rtl = useRtl()
   const {
     activeColor,
     tabStyle,
-    direction,
     activeType,
     duration,
     align,
@@ -72,7 +47,6 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     ...props,
   }
   const uuid = useUuid()
-
   const [value, setValue] = usePropsValue<string | number>({
     value: outerValue,
     defaultValue: outerDefaultValue,
@@ -116,11 +90,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
       forceUpdate()
     }
   }, [children])
-  const classes = classNames(
-    classPrefix,
-    `${classPrefix}-${direction}`,
-    className
-  )
+  const classes = classNames(classPrefix, `${classPrefix}-vertical`, className)
   const classesTitle = classNames(`${classPrefix}-titles`, {
     [`${classPrefix}-titles-${activeType}`]: activeType,
     [`${classPrefix}-titles-scrollable`]: true,
@@ -164,26 +134,16 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   const scrollWithAnimation = useRef(false)
   const navRectRef = useRef<any>()
   const titleRectRef = useRef<RectItem[]>([])
-  const [scrollLeft, setScrollLeft] = useState(0)
   const [scrollTop, setScrollTop] = useState(0)
-  const scrollDirection = (
-    to: number,
-    direction: 'horizontal' | 'vertical'
-  ) => {
+  const scrollDirection = (to: number) => {
     let count = 0
     const frames = 1
-
     function animate() {
-      if (direction === 'horizontal') {
-        setScrollLeft(to)
-      } else {
-        setScrollTop(to)
-      }
+      setScrollTop(to)
       if (++count < frames) {
         raf(animate)
       }
     }
-
     animate()
   }
   const scrollIntoView = (index: number) => {
@@ -194,30 +154,16 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
       ]).then(([navRect, titleRects]: any) => {
         navRectRef.current = navRect
         titleRectRef.current = titleRects
-        // @ts-ignore
         const titleRect: RectItem = titleRectRef.current[index]
         if (!titleRect) return
-
-        let to = 0
-        if (direction === 'vertical') {
-          const top = titleRects
-            .slice(0, index)
-            .reduce((prev: number, curr: RectItem) => prev + curr.height, 0)
-          to = top - (navRectRef.current.height - titleRect.height) / 2
-        } else {
-          const left = titleRects
-            .slice(0, index)
-            .reduce((prev: number, curr: RectItem) => prev + curr.width, 0)
-          to = left - (navRectRef.current.width - titleRect.width) / 2
-          // to < 0 说明不需要进行滚动，页面元素已全部显示出来
-          if (to < 0) return
-          to = rtl ? -to : to
-        }
+        const top = titleRects
+          .slice(0, index)
+          .reduce((prev: number, curr: RectItem) => prev + curr.height, 0)
+        const to = top - (navRectRef.current.height - titleRect.height) / 2
         nextTick(() => {
           scrollWithAnimation.current = true
         })
-
-        scrollDirection(to, direction)
+        scrollDirection(to)
       })
     })
   }
@@ -228,10 +174,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     )
     index = index < 0 ? 0 : index
     return {
-      transform:
-        direction === 'horizontal'
-          ? `translate3d(${rtl ? '' : '-'}${index * 100}%, 0, 0)`
-          : `translate3d( 0,-${index * 100}%, 0)`,
+      transform: `translate3d( 0,-${index * 100}%, 0)`,
       transitionDuration: `${duration}ms`,
     }
   }
@@ -246,9 +189,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
 
   const tabChange = (item: TabsTitle, index: number) => {
     onClick && onClick(item.value)
-    if (item.disabled) {
-      return
-    }
+    if (item.disabled) return
     setValue(item.value)
   }
 
@@ -256,9 +197,8 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
     <View className={classes} {...rest}>
       <ScrollView
         enableFlex
-        scrollX={direction === 'horizontal'}
-        scrollY={direction === 'vertical'}
-        scrollLeft={scrollLeft}
+        scrollX={false}
+        scrollY
         scrollTop={scrollTop}
         showScrollbar={false}
         scrollWithAnimation={
@@ -294,8 +234,7 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
                         className={classNames(
                           `${classPrefix}-titles-item-line`,
                           {
-                            [`${classPrefix}-titles-item-line-${direction}`]:
-                              true,
+                            [`${classPrefix}-titles-item-line-vertical`]: true,
                           }
                         )}
                         style={tabsActiveStyle}
@@ -328,12 +267,10 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
             if (!React.isValidElement(child)) {
               return null
             }
-
             let childProps = {
               ...child.props,
               active: value === child.props.value,
             }
-
             if (
               String(value) !== String(child.props.value || idx) &&
               autoHeight
@@ -351,5 +288,5 @@ export const Tabs: FunctionComponent<Partial<TabsProps>> & {
   )
 }
 
-Tabs.displayName = 'NutTabs'
-Tabs.TabPane = TabPane
+VerticalTabs.displayName = 'NutVerticalTabs'
+VerticalTabs.TabPane = TabPane

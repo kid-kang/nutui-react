@@ -1,4 +1,4 @@
-import { Tabs } from './tabs.taro'
+import { VerticalTabs } from './verticaltabs.taro'
 
-export type { TabsProps, TabsTitle } from './tabs.taro'
-export default Tabs
+export type { TabsProps, TabsTitle } from './verticaltabs.taro'
+export default VerticalTabs

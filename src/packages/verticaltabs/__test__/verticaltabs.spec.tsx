@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { render, waitFor, fireEvent } from '@testing-library/react'
 import '@testing-library/jest-dom'
-import { Tabs } from '../tabs'
+import { VerticalTabs as Tabs } from '../verticaltabs'
 import { TabPane } from '../../tabpane/tabpane'
 
 test('base Tabs', () => {
@@ -15,13 +15,13 @@ test('base Tabs', () => {
 
 test('base tabs props', () => {
   const { container } = render(
-    <Tabs value="0" direction="horizontal" activeType="smile">
+    <Tabs value="0" activeType="smile">
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>
     </Tabs>
   )
-  const el2 = container.querySelectorAll('.nut-tabs-horizontal')
+  const el2 = container.querySelectorAll('.nut-tabs-vertical')
   const el3 = container.querySelectorAll('.nut-tabs-titles')[0]
 
   expect(el2.length > 0).toBe(true)
@@ -31,7 +31,7 @@ test('base tabs props', () => {
 
 test('base tabs props', () => {
   const { container } = render(
-    <Tabs value="0" direction="horizontal" activeType="card">
+    <Tabs value="0" activeType="card">
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>
@@ -52,7 +52,7 @@ test('base other props', async () => {
   const el: Element | null = container.querySelector('.nut-tabs-content')
   expect(el).toHaveAttribute(
     'style',
-    'transform: translate3d(-0%, 0, 0); transition-duration: 500ms;'
+    'transform: translate3d( 0,-0%, 0); transition-duration: 500ms;'
   )
   const el2 = container.querySelectorAll('.nut-tabs-titles-item')[1]
   fireEvent.click(el2)
@@ -63,7 +63,7 @@ test('base other props', async () => {
   await waitFor(() => {
     expect(el3).toHaveAttribute(
       'style',
-      'transform: translate3d(-100%, 0, 0); transition-duration: 500ms;'
+      'transform: translate3d( 0,-100%, 0); transition-duration: 500ms;'
     )
   })
 })
@@ -144,7 +144,7 @@ test('base click', () => {
 test('click tab when have many tabs', async () => {
   const handleClick = vi.fn(() => {})
   const { container } = render(
-    <Tabs value="0" onClick={handleClick} direction="vertical">
+    <Tabs value="0" onClick={handleClick}>
       <TabPane title="Tab 1" value="0">
         Tab 1
       </TabPane>

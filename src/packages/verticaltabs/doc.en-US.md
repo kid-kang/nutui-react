@@ -1,16 +1,16 @@
-# Tabs
+# VerticalTabs vertical tabs
 
-It is often used for the storage and display of large blocks of content in the level area, and supports the form of embedded tags and rendering loop data.
+Commonly used for storage and display of large blocks of content in horizontal areas, supports embedded tag format and rendering loop data format
 
 ## Import
 
 ```tsx
-import { Tabs } from '@nutui/nutui-react'
+import { VerticalTabs } from '@nutui/nutui-react'
 ```
 
-## Demo
+## Sample code
 
-### Basic Usage
+### Basic usage
 
 :::demo
 
@@ -18,7 +18,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Basic Usage-Smile Curve
+### Basic usage-simple mode
 
 :::demo
 
@@ -26,7 +26,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Basic Usage-Simple Mode
+### Basic usage-card mode
 
 :::demo
 
@@ -34,7 +34,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Basic Usage-Card Mode
+### Basic usage - button mode
 
 :::demo
 
@@ -42,7 +42,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Basic Usage-Button Mode
+### Basic usage - smile curve
 
 :::demo
 
@@ -50,7 +50,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Basic Usage-Divider Mode
+### Large number, scrolling operation
 
 :::demo
 
@@ -58,7 +58,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Title Left Align
+### Nested layout
 
 :::demo
 
@@ -66,7 +66,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Title Left Align-Card Mode
+### Nested layout 2
 
 :::demo
 
@@ -74,133 +74,7 @@ import { Tabs } from '@nutui/nutui-react'
 
 :::
 
-### Title Left Align-Button Mode
-
-:::demo
-
-<CodeBlock src='h5/demo9.tsx'></CodeBlock>
-
-:::
-
-### Title Left Align-Divider Mode
-
-:::demo
-
-<CodeBlock src='h5/demo10.tsx'></CodeBlock>
-
-:::
-
-### Match By Value
-
-:::demo
-
-<CodeBlock src='h5/demo11.tsx'></CodeBlock>
-
-:::
-
-### Slide To Switch
-
-:::demo
-
-<CodeBlock src='h5/demo12.tsx'></CodeBlock>
-
-:::
-
-### CSS Sticky
-
-By setting the style of the tab, for example: `tabStyle={{ position: 'sticky', top: '0px', zIndex: 11 }}` , realize the sticky layout of CSS. Note: In the WeChat applet, the outer elements of the component cannot have overflow. Settings for hidden, auto, and scroll.
-
-:::demo
-
-<CodeBlock src='h5/demo13.tsx'></CodeBlock>
-
-:::
-
-### Tabpane Auto Height
-
-When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change with the current height of nut-tabpane.
-
-:::demo
-
-<CodeBlock src='h5/demo14.tsx'></CodeBlock>
-
-:::
-
-### Data Is Rendered Asynchronously For 3s
-
-:::demo
-
-<CodeBlock src='h5/demo15.tsx'></CodeBlock>
-
-:::
-
-### A Large Number Of Scrolling Operations
-
-:::demo
-
-<CodeBlock src='h5/demo16.tsx'></CodeBlock>
-
-:::
-
-:::
-
-### A Large Number Of Scrolling Operations 2
-
-:::demo
-
-<CodeBlock src='h5/demo17.tsx'></CodeBlock>
-
-:::
-
-### Left And Right Layout
-
-:::demo
-
-<CodeBlock src='h5/demo18.tsx'></CodeBlock>
-
-:::
-
-### Left And Right Layout-Smile Curve
-
-:::demo
-
-<CodeBlock src='h5/demo19.tsx'></CodeBlock>
-
-:::
-
-### Tabs In Tabs
-
-:::demo
-
-<CodeBlock src='h5/demo20.tsx'></CodeBlock>
-
-:::
-
-### Tabs In Tabs 2
-
-:::demo
-
-<CodeBlock src='h5/demo21.tsx'></CodeBlock>
-
-:::
-
-### Title FontSize: 20px 12px
-
-:::demo
-
-<CodeBlock src='h5/demo22.tsx'></CodeBlock>
-
-:::
-
-### Custom Tab Bar
-
-:::demo
-
-<CodeBlock src='h5/demo23.tsx'></CodeBlock>
-
-:::
-
-## Tabs
+## VerticalTabs
 
 ### Props
 
@@ -209,7 +83,6 @@ When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change wit
 | value | The value of the currently active tab panel | `number` \| `string` | `0` |
 | defaultValue | Initialize the value of the active tab | `number` \| `string` | `0` |
 | activeColor | Label selected color | `string` | `#1A1A1A` |
-| direction | Use horizontal and vertical directions | `horizontal` \| `vertical` | `horizontal` |
 | activeType | Select the bottom display style Optional values `line`、`smile`、`simple`、`card`、`button`、`divider` | `line` \| `smile` \| `simple` \| `card` \| `button`\| `divider` | `line` |
 | duration | Switch animation duration, unit ms 0 means no animation | `number` \| `string` | `300` |
 | title | custom navigation area | `() => JSX.Element[]` | `-` |
@@ -219,7 +92,7 @@ When autoHeight is set to true, nut-tabs and nut-tabs\_\_content will change wit
 | onClick | Triggered when the label is clicked | `(index: string \| number) => void` | `-` |
 | onChange | Triggered when the currently active tab changes | `(index: string \| number) => void` | `-` |
 
-## Tabs.Tabpane
+## VerticalTabs.Tabpane
 
 ### Props
 

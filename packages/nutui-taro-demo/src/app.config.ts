@@ -32,7 +32,8 @@ const subPackages = [
       "pages/navbar/index",
       "pages/sidenavbar/index",
       "pages/tabbar/index",
-      "pages/tabs/index"
+      "pages/tabs/index",
+      "pages/verticaltabs/index"
     ]
   },
   {
