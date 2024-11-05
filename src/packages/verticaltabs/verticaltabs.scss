@@ -214,11 +214,6 @@
   }
 }
 
-.nut-tabs-horizontal {
-  flex-direction: column;
-  position: relative;
-}
-
 .nut-tabs-vertical {
   flex-direction: row;
   width: 100%;
@@ -299,42 +294,6 @@
     }
   }
 
-  .nut-tabs-horizontal {
-    .nut-tabs-titles {
-      flex-direction: row;
-      overflow-x: auto;
-      overflow-y: hidden;
-      height: $tabs-titles-height;
-
-      .nut-tabs-list {
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        flex-shrink: 0;
-      }
-    }
-
-    .nut-tabs-content {
-      flex-direction: row;
-    }
-
-    .nut-tabs-titles-item-active {
-      background-color: initial;
-
-      .nut-tabs-titles-item-line {
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
-
-      .nut-tabs-titles-item-smile {
-        left: 50%;
-        right: auto;
-        bottom: -3px;
-        transform: translate(-50%, 0) rotate(0deg);
-      }
-    }
-  }
-
   .nut-tabs-content {
     flex-direction: column;
     height: 100%;
@@ -345,35 +304,6 @@
 
     .nut-tabpane {
       height: 100%;
-    }
-  }
-
-  .nut-tabs-horizontal {
-    .nut-tabs-titles {
-      display: flex;
-      flex-direction: row;
-      padding: 0 !important;
-      width: 100%;
-
-      .nut-tabs-titles-item {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 1 0 auto;
-
-        &-active {
-          color: $color-primary;
-          font-weight: $tabs-titles-item-active-font-weight;
-          font-size: $tabs-titles-item-active-font-size;
-
-          .nut-tabs-titles-item-line {
-            content: ' ';
-            width: $tabs-tab-line-width;
-            height: $tabs-tab-line-height;
-            background: $tabs-tab-line-color;
-          }
-        }
-      }
     }
   }
 }
@@ -400,22 +330,6 @@
         left: -12px;
         right: auto;
         transform: rotate(-320deg);
-      }
-    }
-  }
-
-  .nut-tabs-horizontal {
-    .nut-tabs-titles-item-active {
-      .nut-tabs-titles-item-line {
-        left: auto;
-        right: 50%;
-        transform: translate(50%, 0);
-      }
-
-      .nut-tabs-titles-item-smile {
-        right: 50%;
-        left: auto;
-        transform: translate(50%, 0) rotate(0deg);
       }
     }
   }

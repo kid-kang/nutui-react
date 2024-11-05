@@ -387,7 +387,7 @@
           "author": "张晶发"
         },
         {
-          "version": "3.0.0",
+          "version": "2.0.0",
           "name": "Tabs",
           "type": "component",
           "cName": "水平选项卡",
@@ -398,7 +398,7 @@
           "author": "oasis"
         },
         {
-          "version": "3.0.0",
+          "version": "2.0.0",
           "name": "VerticalTabs",
           "type": "component",
           "cName": "垂直选项卡",
