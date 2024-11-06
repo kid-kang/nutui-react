@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Copy migrate from v1
+      - name: Copy migrate from v2
         run: node scripts/copy-migrate-from-v2.js
 
       - name : Sync
