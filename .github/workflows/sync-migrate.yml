@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/**'
       - 'src/**'
-      - migrate-from-v1.md
+      - migrate-from-v2.md
       - 'package.json'
 
 jobs:
@@ -29,12 +29,12 @@ jobs:
         run: pnpm install
 
       - name: Copy migrate from v1
-        run: node scripts/copy-migrate-from-v1.js
+        run: node scripts/copy-migrate-from-v2.js
 
       - name : Sync
         uses : JamesIves/github-pages-deploy-action@v4.5.0
         with :
-          branch : new-site # action 应该部署到的分支 。
+          branch : react3x/new-site # action 应该部署到的分支 。
           folder : site_docs_migrate #操作应该部署的文件夹 。
           clean: false
           repository-name: jdf2e/nutui-docs
