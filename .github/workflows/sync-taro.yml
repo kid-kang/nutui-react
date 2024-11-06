@@ -3,7 +3,7 @@ name: sync to docs-taro
 on:
   push:
     branches:
-      - next # default branch
+      - V3.0
     paths:
       - '.github/workflows/**'
       - 'src/**'
