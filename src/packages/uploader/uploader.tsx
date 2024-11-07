@@ -192,11 +192,12 @@ const InternalUploader: ForwardRefRenderFunction<
     const $el = event.target
     const { files } = $el
     let _files: File[] = []
+    const filesArr = new Array<File>().slice.call(files)
     if (beforeUpload) {
-      _files = await beforeUpload(new Array<File>().slice.call(files))
+      _files = await beforeUpload(filesArr)
       if (!_files.length) $el.value = ''
     }
-    _files = filterFiles(new Array<File>().slice.call(files))
+    _files = filterFiles(filesArr)
 
     const tasks = _files.map((file) => {
       const info: any = {
@@ -279,10 +280,10 @@ const InternalUploader: ForwardRefRenderFunction<
     onFileItemClick?.(file, index)
   }
   const renderImageUploader = () => {
+    const shouldShow =
+      Number(maxCount) > fileList.length && previewType === 'picture'
     return (
-      Number(maxCount) > fileList.length &&
-      previewType === 'picture' &&
-      !children && (
+      shouldShow && (
         <div
           className={classNames('nut-uploader-upload', previewType, {
             'nut-uploader-upload-disabled': disabled,
@@ -309,13 +310,11 @@ const InternalUploader: ForwardRefRenderFunction<
   }
   const renderListUploader = () => {
     return (
-      (children || previewType === 'list') && (
+      previewType === 'list' && (
         <div className="nut-uploader-slot">
-          {children || (
-            <Button size="small" type="primary">
-              {locale.uploader.list}
-            </Button>
-          )}
+          <Button size="small" type="primary">
+            {locale.uploader.list}
+          </Button>
           {Number(maxCount) > fileList.length && (
             <input
               className="nut-uploader-input"

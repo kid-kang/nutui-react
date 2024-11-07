@@ -376,11 +376,12 @@ const InternalUploader: ForwardRefRenderFunction<
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
     const { tempFiles } = res
     const _files: Taro.chooseImage.ImageFile[] = filterFiles(tempFiles)
-    let files = []
+    let files: File[] = []
+    const filesArr = new Array<File>().slice.call(files)
     if (beforeUpload) {
-      files = await beforeUpload(new Array<File>().slice.call(_files))
+      files = await beforeUpload(filesArr)
     }
-    files = filterFiles(new Array<File>().slice.call(_files))
+    files = filterFiles(filesArr)
     readFile(_files)
   }
 
@@ -389,14 +390,12 @@ const InternalUploader: ForwardRefRenderFunction<
   }
   const renderListUploader = () => {
     return (
-      (children || previewType === 'list') && (
+      previewType === 'list' && (
         <View className="nut-uploader-slot">
           <>
-            {children || (
-              <Button size="small" type="primary">
-                {locale.uploader.list}
-              </Button>
-            )}
+            <Button size="small" type="primary">
+              {locale.uploader.list}
+            </Button>
             {Number(maxCount) > fileList.length && (
               <Button className="nut-uploader-input" onClick={_chooseImage} />
             )}
@@ -406,10 +405,10 @@ const InternalUploader: ForwardRefRenderFunction<
     )
   }
   const renderImageUploader = () => {
+    const shouldShow =
+      Number(maxCount) > fileList.length && previewType === 'picture'
     return (
-      Number(maxCount) > fileList.length &&
-      previewType === 'picture' &&
-      !children && (
+      shouldShow && (
         <View
           className={`nut-uploader-upload ${previewType} ${
             disabled ? 'nut-uploader-upload-disabled' : ''
