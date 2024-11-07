@@ -104,7 +104,7 @@
   "dependencies": {
     "@babel/runtime": "^7.23.9",
     "@nutui/icons-react": "^1.0.5",
-    "@nutui/icons-react-taro": "^1.0.5",
+    "@nutui/icons-react-taro": "2.0.0-beta.0",
     "@nutui/jdesign-icons-react-taro": "1.0.6-beta.2",
     "@nutui/touch-emulator": "^1.0.0",
     "@react-spring/web": "~9.6.1",
@@ -156,9 +156,9 @@
     "@vitest/ui": "^2.0.4",
     "autoprefixer": "^10.4.17",
     "axios": "^1.6.7",
+    "cypress": "^13.15.0",
     "del": "^7.1.0",
     "eslint": "^8.56.0",
-    "cypress": "^13.15.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -211,6 +211,7 @@
     "rollup": "^4.12.0",
     "sass": "^1.71.1",
     "shelljs": "^0.8.5",
+    "simple-git": "^3.25.0",
     "turndown": "^7.1.2",
     "turndown-plugin-gfm": "^1.0.2",
     "typescript": "^5.3.3",
@@ -220,7 +221,6 @@
     "vite-plugin-dts": "4.2.1",
     "vitest": "^2.0.4",
     "vitest-canvas-mock": "^0.3.3",
-    "simple-git": "^3.25.0",
     "yargs": "^17.7.2"
   },
   "peerDependencies": {
