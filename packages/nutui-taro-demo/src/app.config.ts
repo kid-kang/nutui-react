@@ -1,41 +1,43 @@
+
 const subPackages = [
   {
-    root: "base",
-    pages: [
+    "root": "base",
+    "pages": [
       "pages/button/index",
       "pages/cell/index",
       "pages/configprovider/index",
       "pages/icon/index",
       "pages/image/index",
-      "pages/overlay/index",
-    ],
+      "pages/overlay/index"
+    ]
   },
   {
-    root: "layout",
-    pages: [
+    "root": "layout",
+    "pages": [
       "pages/divider/index",
       "pages/grid/index",
       "pages/layout/index",
       "pages/safearea/index",
       "pages/space/index",
-      "pages/sticky/index",
-    ],
+      "pages/sticky/index"
+    ]
   },
   {
-    root: "nav",
-    pages: [
+    "root": "nav",
+    "pages": [
       "pages/backtop/index",
       "pages/elevator/index",
       "pages/fixednav/index",
+      "pages/hoverbutton/index",
       "pages/navbar/index",
       "pages/sidenavbar/index",
       "pages/tabbar/index",
-      "pages/tabs/index",
-    ],
+      "pages/tabs/index"
+    ]
   },
   {
-    root: "dentry",
-    pages: [
+    "root": "dentry",
+    "pages": [
       "pages/address/index",
       "pages/calendar/index",
       "pages/calendarcard/index",
@@ -44,12 +46,12 @@ const subPackages = [
       "pages/datepicker/index",
       "pages/form/index",
       "pages/input/index",
-      "pages/inputnumber/index",
-    ],
+      "pages/inputnumber/index"
+    ]
   },
   {
-    root: "dentry1",
-    pages: [
+    "root": "dataentry",
+    "pages": [
       "pages/menu/index",
       "pages/numberkeyboard/index",
       "pages/picker/index",
@@ -61,12 +63,12 @@ const subPackages = [
       "pages/signature/index",
       "pages/switch/index",
       "pages/textarea/index",
-      "pages/uploader/index",
-    ],
+      "pages/uploader/index"
+    ]
   },
   {
-    root: "feedback",
-    pages: [
+    "root": "feedback",
+    "pages": [
       "pages/actionsheet/index",
       "pages/badge/index",
       "pages/dialog/index",
@@ -79,14 +81,15 @@ const subPackages = [
       "pages/popover/index",
       "pages/popup/index",
       "pages/pulltorefresh/index",
+      "pages/resultpage/index",
       "pages/skeleton/index",
       "pages/swipe/index",
-      "pages/toast/index",
-    ],
+      "pages/toast/index"
+    ]
   },
   {
-    root: "exhibition",
-    pages: [
+    "root": "exhibition",
+    "pages": [
       "pages/animate/index",
       "pages/animatingnumbers/index",
       "pages/avatar/index",
@@ -105,29 +108,32 @@ const subPackages = [
       "pages/tag/index",
       "pages/tour/index",
       "pages/video/index",
-      "pages/virtuallist/index",
-    ],
+      "pages/virtuallist/index"
+    ]
   },
   {
-    root: "business",
-    pages: [
+    "root": "business",
+    "pages": [
       "pages/avatarcropper/index",
       "pages/barrage/index",
       "pages/card/index",
       "pages/timeselect/index",
       "pages/trendarrow/index",
-      "pages/watermark/index",
-    ],
-  },
-]
+      "pages/watermark/index"
+    ]
+  }
+];
 
 export default defineAppConfig({
-  pages: ["pages/index/index"],
+  pages: ['pages/index/index'],
   subPackages,
   window: {
-    backgroundTextStyle: "light",
-    navigationBarBackgroundColor: "#fff",
-    navigationBarTitleText: "NutUI-React",
-    navigationBarTextStyle: "black",
+    backgroundTextStyle: 'light',
+    navigationBarBackgroundColor: '#fff',
+    navigationBarTitleText: 'NutUI-React',
+    navigationBarTextStyle: 'black'
   },
+  components: ['pages/index/index', ...(subPackages.map(subPackage => {
+    return subPackage.pages.map(page => `${subPackage.root}/${page}`)
+  }).flat())]
 })
