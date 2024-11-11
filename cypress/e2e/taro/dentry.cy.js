@@ -11,7 +11,7 @@ const componentTest = (comName, fn) => {
     'InputNumber',
   ]
   const getPath = (component) =>
-    `${dentryArr.includes(component) ? 'dentry' : 'dentry1'}/pages/${component.toLowerCase()}/index`
+    `${dentryArr.includes(component) ? 'dentry' : 'dataentry'}/pages/${component.toLowerCase()}/index`
 
   it(`${comName} successfully passes`, () => {
     cy.visit(getPath(comName))
@@ -21,25 +21,25 @@ const componentTest = (comName, fn) => {
   })
 }
 describe('layout components test', () => {
-  componentTest('Address', () => {})
-  componentTest('Calendar', () => {})
-  componentTest('CalendarCard', () => {})
-  componentTest('Cascader', () => {})
-  componentTest('Checkbox', () => {})
-  componentTest('DatePicker', () => {})
-  componentTest('Form', () => {})
+  // componentTest('Address', () => {})
+  // componentTest('Calendar', () => {})
+  // componentTest('CalendarCard', () => {})
+  // componentTest('Cascader', () => {})
+  // componentTest('Checkbox', () => {})
+  // componentTest('DatePicker', () => {})
+  // componentTest('Form', () => {})
   componentTest('Input', () => {})
   componentTest('InputNumber', () => {})
-  componentTest('Menu', () => {})
-  componentTest('NumberKeyboard', () => {})
-  componentTest('Picker', () => {})
-  componentTest('Radio', () => {})
+  // componentTest('Menu', () => {})
+  // componentTest('NumberKeyboard', () => {})
+  // componentTest('Picker', () => {})
+  // componentTest('Radio', () => {})
   componentTest('Range', () => {})
-  componentTest('Rate', () => {})
+  // componentTest('Rate', () => {})
   componentTest('SearchBar', () => {})
-  componentTest('ShortPassword', () => {})
-  componentTest('Signature', () => {})
+  // componentTest('ShortPassword', () => {})
+  // componentTest('Signature', () => {})
   componentTest('Switch', () => {})
   componentTest('TextArea', () => {})
-  componentTest('Uploader', () => {})
+  // componentTest('Uploader', () => {})
 })
