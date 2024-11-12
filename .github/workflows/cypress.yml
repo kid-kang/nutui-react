@@ -22,6 +22,8 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
+      - name: Install dependencies
+        run: pnpm install
       - uses: actions/checkout@v2
       - name: Cache Cypress
         uses: actions/cache@v4
@@ -30,9 +32,6 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-cypress-
-      - name: Install dependencies
-        run: pnpm install
-
       - name: Run E2E Tests for H5
         env:
           CI: true
