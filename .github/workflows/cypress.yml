@@ -22,10 +22,7 @@ jobs:
         with:
           node-version: '20'
           cache: 'pnpm'
-      - name: Clear Cypress cache
-        run: npx cypress cache clear
-      - name: Install Cypress
-        run: npx cypress install
+
       - name: Install dependencies
         run: pnpm install
 
