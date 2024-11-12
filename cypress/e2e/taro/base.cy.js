@@ -1,11 +1,11 @@
 const componentTest = (comName, fn) => {
-  const baseArr = ['Button', 'Cell', 'ConfigProvider', 'Image']
-  const getPath = (component) => `base/pages/${component.toLowerCase()}/index`
+  const getPath = (component) =>
+    `${Cypress.env('baseUrl')}base/pages/${component.toLowerCase()}/index`
 
   it(`${comName} successfully passes`, () => {
     cy.visit(getPath(comName))
     cy.get('.applets-demo-header').contains(comName)
-    cy.wait(400)
+    cy.wait(1000)
     fn()
   })
 }

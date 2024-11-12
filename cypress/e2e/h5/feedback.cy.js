@@ -1,19 +1,17 @@
-const componentTest = (comName, fn) => {
-  const getPath = (component) =>
-    `${Cypress.env('baseUrl')}feedback/pages/${component.toLowerCase()}/index`
+import { componentTest } from './utils'
 
-  it(`${comName} successfully passes`, () => {
-    cy.visit(getPath(comName))
-    cy.get('.applets-demo-header').contains(comName)
-    cy.wait(1000)
-    fn()
-  })
-}
 describe('feedback components test', () => {
+  componentTest('ActionSheet', () => {})
+  componentTest('Badge', () => {})
+  componentTest('Dialog', () => {})
+  componentTest('Drag', () => {})
   componentTest('Empty', () => {})
   componentTest('ResultPage', () => {})
   componentTest('InfiniteLoading', () => {})
+  componentTest('Loading', () => {})
+  componentTest('NoticeBar', () => {})
   componentTest('Notify', () => {})
+  componentTest('Popover', () => {})
   componentTest('Popup', () => {})
   componentTest('PullToRefresh', () => {})
   componentTest('Skeleton', () => {})

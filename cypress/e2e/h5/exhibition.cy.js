@@ -1,0 +1,23 @@
+import { componentTest } from './utils'
+
+describe('exhibition components test', () => {
+  componentTest('Animate', () => {})
+  componentTest('AnimatingNumbers', () => {})
+  componentTest('Audio', () => {})
+  componentTest('Avatar', () => {})
+  componentTest('CircleProgress', () => {})
+  componentTest('Collapse', () => {})
+  componentTest('CountDown', () => {})
+  componentTest('Ellipsis', () => {})
+  componentTest('ImagePreview', () => {})
+  componentTest('Indicator', () => {})
+  componentTest('Pagination', () => {})
+  componentTest('Price', () => {})
+  componentTest('Progress', () => {})
+  componentTest('Swiper', () => {})
+  componentTest('Table', () => {})
+  componentTest('Tag', () => {})
+  componentTest('Tour', () => {})
+  componentTest('Video', () => {})
+  componentTest('VirtualList', () => {})
+})

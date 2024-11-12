@@ -11,16 +11,16 @@ const componentTest = (comName, fn) => {
     'InputNumber',
   ]
   const getPath = (component) =>
-    `${dentryArr.includes(component) ? 'dentry' : 'dataentry'}/pages/${component.toLowerCase()}/index`
+    `${Cypress.env('baseUrl')}${dentryArr.includes(component) ? 'dentry' : 'dataentry'}/pages/${component.toLowerCase()}/index`
 
   it(`${comName} successfully passes`, () => {
     cy.visit(getPath(comName))
     cy.get('.applets-demo-header').contains(comName)
-    cy.wait(400)
+    cy.wait(1000)
     fn()
   })
 }
-describe('layout components test', () => {
+describe('dentry components test', () => {
   // componentTest('Address', () => {})
   // componentTest('Calendar', () => {})
   // componentTest('CalendarCard', () => {})
