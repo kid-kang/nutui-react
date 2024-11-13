@@ -27,7 +27,7 @@ jobs:
       - name: Run E2E Tests for H5
         env:
           CI: true
-        run: pnpm e2e:run:h5
+        run: pnpm cypress install --force && pnpm e2e:run:h5
 
       # - name: Run E2E Tests for Taro
       #   env:
