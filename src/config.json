@@ -757,7 +757,8 @@
           "sort": 16,
           "show": true,
           "taro": true,
-          "author": "liukun"
+          "author": "liukun",
+          "V14": true
         },
         {
           "version": "3.0.0",
