@@ -74,7 +74,6 @@
           &.nut-table-fixed-left,
           &.nut-table-fixed-right {
             z-index: 4;
-            // 给个默认背景色，解决在小程序中固定列与滚动内列混合
             background-color: #fff;
           }
 
